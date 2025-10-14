@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17344598.svg)](https://doi.org/10.5281/zenodo.17344598)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17352843.svg)](https://doi.org/10.5281/zenodo.17352843)
 [![R-CMD-check](https://github.com/roaldarbol/aniread/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/roaldarbol/aniread/actions/workflows/R-CMD-check.yaml)
 [![aniread status
 badge](https://roaldarbol.r-universe.dev/badges/aniread)](https://roaldarbol.r-universe.dev)

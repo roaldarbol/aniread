@@ -10,6 +10,9 @@ license: MIT
 title: 'aniread: An R toolbox for reading and writing movement data.'
 version: 0.1.0
 date-released: 2025-10-14
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.17352843
 abstract: An R toolbox for reading and writing movement data.
 authors:
 - family-names: Roald-Arbøl
@@ -22,4 +25,3 @@ contact:
   given-names: Mikkel
   email: aniread.fi28v@passmail.com
   orcid: https://orcid.org/0000-0002-9998-0058
-

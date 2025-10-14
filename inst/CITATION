@@ -1,0 +1,14 @@
+citHeader("To cite aniread in publications use:")
+
+bibentry(bibtype = "Misc",
+         key = "aniread",
+         doi = "10.5281/zenodo.17352843",
+         title = "aniread: An R toolbox for reading and writing movement data",
+         author = person(given = "Mikkel",
+                         family = "Roald-Arbøl",
+                         email = "aniread.fi28v@passmail.com",
+                         comment = c(ORCID = "0000-0002-9998-0058")),
+         year = "2025",
+         url = "http://www.roald-arboel.com/aniread/",
+         abstract = "An R toolbox for reading and writing movement data.",
+         version = "0.1.0")
