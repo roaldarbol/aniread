@@ -27,7 +27,7 @@
       "Package": "aniframe",
       "Version": "0.1.0",
       "Source": "Repository",
-      "Repository": "roaldarbol",
+      "Repository": "https://roaldarbol.r-universe.dev",
       "Requirements": [
         "R",
         "cli",
