@@ -1,6 +1,6 @@
 {
   "bioconductor.version": null,
-  "external.libraries": ["https://roaldarbol.r-universe.dev"],
+  "external.libraries": [],
   "ignored.packages": [],
   "package.dependency.fields": [
     "Imports",
