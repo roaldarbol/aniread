@@ -28,7 +28,15 @@ read_sleap_h5 <- function(path) {
   rlang::check_installed(
     "rhdf5",
     reason = "to read SLEAP HDF5 files",
-    action = function(...) utils::install.packages('rhdf5', repos = c('https://roaldarbol.r-universe.dev', 'https://cloud.r-project.org'))
+    action = function(...) {
+      utils::install.packages(
+        'rhdf5',
+        repos = c(
+          'https://roaldarbol.r-universe.dev',
+          'https://cloud.r-project.org'
+        )
+      )
+    }
   )
 
   n_individuals <- rhdf5::h5ls(path) |>

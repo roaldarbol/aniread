@@ -36,7 +36,7 @@ read_bonsai <- function(path) {
   attributes(data)$spec <- NULL
   attributes(data)$problems <- NULL
 
-  # Set ani_df class and metadata
+  # Set aniframe class and metadata
   data <- data |>
     aniframe::as_aniframe() |>
     aniframe::set_metadata(start_datetime = data$time[[1]]) |>

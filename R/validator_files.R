@@ -16,10 +16,10 @@
 #' @param expected_headers Expected column name(s) to be present among the header names. Default is c("x", "y", "time").
 #' @keywords internal
 validate_files <- function(
-    path,
-    expected_permission = "r",
-    expected_suffix = NULL,
-    expected_headers = NULL
+  path,
+  expected_permission = "r",
+  expected_suffix = NULL,
+  expected_headers = NULL
 ) {
   # Perform checks on all supplied paths
   for (p in path) {
@@ -118,8 +118,8 @@ ensure_file_has_headers <- function(path) {
 #' @inheritParams validate_files
 #' @keywords internal
 ensure_file_has_expected_headers <- function(
-    path,
-    expected_headers = c("x", "y", "time")
+  path,
+  expected_headers = c("x", "y", "time")
 ) {
   df <- vroom::vroom(
     path,
@@ -141,8 +141,8 @@ ensure_file_has_expected_headers <- function(
 #' @inheritParams validate_files
 #' @keywords internal
 does_file_have_expected_headers <- function(
-    path,
-    expected_headers = c("x", "y", "time")
+  path,
+  expected_headers = c("x", "y", "time")
 ) {
   df <- vroom::vroom(
     path,

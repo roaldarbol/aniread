@@ -1,6 +1,6 @@
 ensure_output_header_names <- function(
-    data,
-    expected_headers = c("time", "individual", "keypoint", "x", "y", "confidence")
+  data,
+  expected_headers = c("time", "individual", "keypoint", "x", "y", "confidence")
 ) {
   headers <- names(data)[names(data) %in% expected_headers]
   if (!all(expected_headers %in% headers)) {
@@ -11,23 +11,23 @@ ensure_output_header_names <- function(
 }
 
 ensure_output_header_class <- function(
-    data,
-    expected_headers = c(
-      "time",
-      "individual",
-      "keypoint",
-      "x",
-      "y",
-      "confidence"
-    ),
-    expected_header_class = c(
-      "numeric",
-      "factor",
-      "factor",
-      "numeric",
-      "numeric",
-      "numeric"
-    )
+  data,
+  expected_headers = c(
+    "time",
+    "individual",
+    "keypoint",
+    "x",
+    "y",
+    "confidence"
+  ),
+  expected_header_class = c(
+    "numeric",
+    "factor",
+    "factor",
+    "numeric",
+    "numeric",
+    "numeric"
+  )
 ) {
   data <- data |>
     dplyr::select(dplyr::all_of(expected_headers))

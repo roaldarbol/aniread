@@ -17,17 +17,17 @@
 #' @return a movement dataframe
 #' @export
 read_trackball <- function(
-    paths,
-    setup = c("of_free", "of_fixed", "fictrac"),
-    sampling_rate,
-    col_time = "time",
-    col_dx = "x",
-    col_dy = "y",
-    ball_calibration = NULL,
-    ball_diameter = NULL,
-    distance_scale = NULL,
-    distance_unit = NULL,
-    verbose = FALSE
+  paths,
+  setup = c("of_free", "of_fixed", "fictrac"),
+  sampling_rate,
+  col_time = "time",
+  col_dx = "x",
+  col_dy = "y",
+  ball_calibration = NULL,
+  ball_diameter = NULL,
+  distance_scale = NULL,
+  distance_unit = NULL,
+  verbose = FALSE
 ) {
   validate_files(paths, expected_suffix = "csv") #expected_headers = c("x", "y", "time")
   validate_trackball(paths, setup, col_time)
@@ -221,11 +221,11 @@ compute_xy_coordinates_free <- function(data) {
 #' @inheritParams read_trackball
 #' @keywords internal
 compute_xy_coordinates_fixed <- function(
-    data,
-    n_sensors,
-    ball_diameter,
-    ball_calibration,
-    distance_scale
+  data,
+  n_sensors,
+  ball_diameter,
+  ball_calibration,
+  distance_scale
 ) {
   if (n_sensors == 2) {
     data <- data |>
