@@ -42,9 +42,6 @@ jobs:
           extra-repositories: 'https://roaldarbol.r-universe.dev'
 
       - uses: r-lib/actions/setup-renv@v2
-        with:
-          extra-packages: any::rcmdcheck
-          needs: check
 
       - uses: r-lib/actions/check-r-package@v2
         with:
