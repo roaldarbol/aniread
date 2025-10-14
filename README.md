@@ -5,8 +5,6 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17344598.svg)](https://doi.org/10.5281/zenodo.17344598)
 [![R-CMD-check](https://github.com/roaldarbol/aniread/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/roaldarbol/aniread/actions/workflows/R-CMD-check.yaml)
 [![aniread status
@@ -50,4 +48,21 @@ To cite *aniread* in publications use:
 
 ``` r
 citation("aniread")
+#> To cite package 'aniread' in publications use:
+#> 
+#>   Roald-Arbøl M (2025). _aniread: An R toolbox for reading and writing
+#>   movement data_. R package version 0.1.0,
+#>   https://github.com/roaldarbol/aniread/,
+#>   <http://www.roald-arboel.com/aniread/>.
+#> 
+#> A BibTeX entry for LaTeX users is
+#> 
+#>   @Manual{,
+#>     title = {aniread: An R toolbox for reading and writing movement data},
+#>     author = {Mikkel Roald-Arbøl},
+#>     year = {2025},
+#>     note = {R package version 0.1.0, 
+#> https://github.com/roaldarbol/aniread/},
+#>     url = {http://www.roald-arboel.com/aniread/},
+#>   }
 ```
