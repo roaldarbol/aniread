@@ -2,3 +2,11 @@
 ^renv\.lock$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^codecov\.yml$
+^LICENSE\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^\.github$
+^CITATION\.cff$
+^README\.Rmd$

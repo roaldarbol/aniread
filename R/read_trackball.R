@@ -82,7 +82,10 @@ read_trackball <- function(
 
   # Init metadata
   data <- data |>
-    init_metadata()
+    aniframe::as_aniframe() |>
+    aniframe::set_metadata(
+      sampling_rate = sampling_rate
+    )
 
   return(data)
 }
@@ -116,16 +119,16 @@ read_opticalflow <- function(path, col_time, verbose = FALSE) {
   data <- data |>
     dplyr::rename("dx" := 1) |>
     dplyr::rename("dy" := 2) |>
-    dplyr::rename("time" := all_of(col_time))
+    dplyr::rename("time" := dplyr::all_of(col_time))
 
   # If time is a datetime stamp, convert it into seconds from start
   # NEEDS TO GO INTO THE TIME VALIDATOR
   if (.is.POSIXt(data$time) == TRUE) {
     data <- data |>
-      mutate(time = as.numeric(.data$time))
+      dplyr::mutate(time = as.numeric(.data$time))
   } else if (is.character(data$time)) {
     data <- data |>
-      mutate(time = as.numeric(as.POSIXct(.data$time)))
+      dplyr::mutate(time = as.numeric(as.POSIXct(.data$time)))
   }
   return(data)
 }
@@ -133,20 +136,16 @@ read_opticalflow <- function(path, col_time, verbose = FALSE) {
 #' Join data files with non-matching time stamps
 #' @description Join data files with non-matching time stamps
 #' @param data_list List of 2 dataframes
-#' @inheritParams read_trackball
+#' @param sampling_rate Sampling rate
 #' @keywords internal
 join_trackball_files <- function(data_list, sampling_rate) {
   ## Find shared time frame between both sensors
   highest_min_time <- max(c(min(data_list[[1]]$time), min(data_list[[2]]$time)))
   lowest_max_time <- min(c(max(data_list[[1]]$time), max(data_list[[2]]$time)))
-  data_list[[1]] <- filter(
-    data_list[[1]],
-    .data$time > highest_min_time & .data$time < lowest_max_time
-  )
-  data_list[[2]] <- filter(
-    data_list[[2]],
-    .data$time > highest_min_time & .data$time < lowest_max_time
-  )
+  data_list[[1]] <- data_list[[1]] |>
+    dplyr::filter(.data$time > highest_min_time & .data$time < lowest_max_time)
+  data_list[[2]] <- data_list[[2]] |>
+    dplyr::filter(.data$time > highest_min_time & .data$time < lowest_max_time)
 
   # We use the provided sampling rate to create shared a shared time frame
   data_list[[1]] <- data_list[[1]] |>
@@ -159,34 +158,34 @@ join_trackball_files <- function(data_list, sampling_rate) {
       y = sum(.data$dy)
     )
   data_list[[2]] <- data_list[[2]] |>
-    mutate(time = as.numeric(.data$time - highest_min_time)) |>
-    filter(.data$time > 0) |>
-    mutate(time_group = floor(.data$time * sampling_rate)) |>
-    group_by(.data$time_group) |>
-    summarise(
+    dplyr::mutate(time = as.numeric(.data$time - highest_min_time)) |>
+    dplyr::filter(.data$time > 0) |>
+    dplyr::mutate(time_group = floor(.data$time * sampling_rate)) |>
+    dplyr::group_by(.data$time_group) |>
+    dplyr::summarise(
       x = sum(.data$dx),
       y = sum(.data$dy)
     )
 
   # We then merge the two data frames
-  data <- full_join(
+  data <- dplyr::full_join(
     data_list[[1]],
     data_list[[2]],
     by = "time_group",
     suffix = c("_1", "_2")
   ) |>
     dplyr::mutate(
-      x_1 = if_else(is.na(.data$x_1), 0, .data$x_1),
-      x_2 = if_else(is.na(.data$x_2), 0, .data$x_2),
-      y_1 = if_else(is.na(.data$y_1), 0, .data$y_1),
-      y_2 = if_else(is.na(.data$y_2), 0, .data$y_2)
+      x_1 = dplyr::if_else(is.na(.data$x_1), 0, .data$x_1),
+      x_2 = dplyr::if_else(is.na(.data$x_2), 0, .data$x_2),
+      y_1 = dplyr::if_else(is.na(.data$y_1), 0, .data$y_1),
+      y_2 = dplyr::if_else(is.na(.data$y_2), 0, .data$y_2)
     )
 
   # Some times do not have any sensor data, so we add those in with zeros
   min_t <- min(data$time_group)
   max_t <- max(data$time_group)
   full_t_seq <- seq(from = min_t, to = max_t, by = 1)
-  missing_times <- tibble(
+  missing_times <- dplyr::tibble(
     time_group = setdiff(full_t_seq, data$time_group),
     x_1 = 0,
     x_2 = 0,

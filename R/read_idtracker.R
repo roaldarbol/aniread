@@ -23,7 +23,7 @@ read_idtracker <- function(path, path_probabilities = NULL, version = 6) {
 
   # Init metadata
   data <- data |>
-    init_metadata()
+    aniframe::as_aniframe()
 
   return(data)
 }
@@ -94,6 +94,7 @@ read_idtracker_probabilities <- function(path) {
     ) |>
     dplyr::select(-"placeholder") |>
     dplyr::rename(time = "seconds")
+  data
 }
 
 #' @inheritParams read_idtracker
@@ -103,7 +104,7 @@ read_idtracker_h5 <- function(path, version = version) {
   rlang::check_installed(
     "rhdf5",
     reason = "to read idtracker.ai HDF5 files",
-    action = function(...) install.packages('rhdf5', repos = c('https://roaldarbol.r-universe.dev', 'https://cloud.r-project.org'))
+    action = function(...) utils::install.packages('rhdf5', repos = c('https://roaldarbol.r-universe.dev', 'https://cloud.r-project.org'))
   )
 
   traj_dimensions <- rhdf5::h5ls(path) |>
@@ -130,7 +131,7 @@ read_idtracker_h5 <- function(path, version = version) {
       dplyr::mutate(
         individual = factor(i),
         keypoint = factor("centroid"),
-        time = row_number()
+        time = dplyr::row_number()
       )
 
     data <- dplyr::bind_rows(data, data_temp)

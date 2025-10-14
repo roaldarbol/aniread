@@ -33,7 +33,7 @@ read_deeplabcut <- function(path, multianimal = NULL) {
 
   # Init metadata
   data <- data |>
-    init_metadata()
+    aniframe::as_aniframe()
 
   return(data)
 }

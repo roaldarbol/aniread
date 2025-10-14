@@ -7,7 +7,7 @@
 #' @return a movement dataframe
 #'
 #' @export
-read_bonsai <- function(path, metadata = NULL) {
+read_bonsai <- function(path) {
   # There can be tracking from multiple ROIs at the same time
   # We need to check everything matches expectations
   # We should be able to use only a single timestamp (should be the same across all ROIs)
@@ -38,8 +38,8 @@ read_bonsai <- function(path, metadata = NULL) {
 
   # Set ani_df class and metadata
   data <- data |>
-    as_ani_df() |>
-    set_start_datetime(data$time[[1]]) |>
+    aniframe::as_aniframe() |>
+    aniframe::set_metadata(start_datetime = data$time[[1]]) |>
     dplyr::mutate(time = as.numeric(.data$time - min(.data$time, na.rm = TRUE)))
   return(data)
 }

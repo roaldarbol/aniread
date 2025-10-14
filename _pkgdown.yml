@@ -1,0 +1,36 @@
+url: http://www.roald-arboel.com/aniread/
+home:
+  title: "aniread – An R toolbox for reading and writing movement data"
+
+authors:
+  - name: "Mikkel Roald‑Arbøl"
+    href: "https://roald-arboel.com"
+
+template:
+  bootstrap: 5
+  light-switch: true
+
+navbar:
+  structure:
+    left:
+      - intro
+      - reference
+      - news
+    right:
+      - search
+      - github
+      - lightswitch
+
+reference:
+- title: "Reader functions"
+  desc: These functions are the links between R and your movement data.
+  contents:
+  - read_animalta
+  - read_bonsai
+  - read_deeplabcut
+  - read_idtracker
+  - read_lightningpose
+  - read_movement
+  - read_sleap
+  - read_trackball
+  - read_trex
