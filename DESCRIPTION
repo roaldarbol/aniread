@@ -1,6 +1,6 @@
 Package: aniread
 Type: Package
-Title: An R toolbox for reading and writing movement data
+Title: An R package for reading and writing movement data
 Version: 0.1.0
 Authors@R: 
     person(
@@ -10,7 +10,7 @@ Authors@R:
       email = "aniread.fi28v@passmail.com",
       comment = c(ORCID = "0000-0002-9998-0058")
       )
-Description: An R toolbox for reading and writing movement data.
+Description: An R package for reading and writing movement data.
 License: MIT + file LICENSE
 URL: http://www.roald-arboel.com/aniread/, https://github.com/roaldarbol/aniread/
 BugReports: https://github.com/roaldarbol/aniread/issues

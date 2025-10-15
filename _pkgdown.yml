@@ -1,6 +1,6 @@
 url: http://www.roald-arboel.com/aniread/
 home:
-  title: "aniread – An R toolbox for reading and writing movement data"
+  title: "aniread – An R package for reading and writing movement data"
 
 authors:
   - name: "Mikkel Roald‑Arbøl"

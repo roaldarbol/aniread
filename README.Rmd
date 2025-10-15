@@ -24,7 +24,7 @@ badge](https://roaldarbol.r-universe.dev/badges/aniread)](https://roaldarbol.r-u
 [![codecov](https://codecov.io/gh/roaldarbol/aniread/graph/badge.svg?token=Pf5n3yzLzK)](https://codecov.io/gh/roaldarbol/aniread)
 <!-- badges: end -->
 
-*An R toolbox for reading and writing movement data*
+*An R package for reading and writing movement data*
 
 The primary aim of the *aniread* package is to provide methods for reading movement data from a range of sources, from video tracking to trackballs.
 
