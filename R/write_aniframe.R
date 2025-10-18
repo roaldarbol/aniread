@@ -20,33 +20,39 @@
 #' * Parquet files are written with the *arrow* package is installed (install‑on‑demand if missing).
 #'
 #' @examples
+#' \dontrun{
 #' ## Create a small aniframe for demonstration
-#' df <- aniframe::example_data()
+#' df <- aniframe::example_aniframe()
 #'
 #' ## Write the aniframe as CSV
 #' write_aniframe(df, "demo.csv")
 #'
 #' ## Write the same aniframe as Parquet
 #' write_aniframe(df, "demo.parquet")
-#'
+#' }
 #' @export
-write_aniframe <- function(data, filename, ...){
+write_aniframe <- function(data, filename, ...) {
   dot_args <- list(...)
   ext <- .get_file_ext(filename)
   allowed_exts <- c("parquet", "csv", "tsv")
 
   # Input validation
-  if (!aniframe::is_aniframe(data)){
+  if (!aniframe::is_aniframe(data)) {
     cli::cli_abort("Data is not an aniframe.")
   }
-  if (!ext %in% allowed_exts){
-    cli::cli_abort("File extension needs to be one of {allowed_exts} (got {ext}).")
+  if (!ext %in% allowed_exts) {
+    cli::cli_abort(
+      "File extension needs to be one of {allowed_exts} (got {ext})."
+    )
   }
 
   # Validate filename
-  if (ext == "parquet"){
+  if (ext == "parquet") {
     write_aniframe_parquet(data, filename, ...)
-  } else if (ext %in% c("csv", "tsv")){
+  } else if (ext %in% c("csv", "tsv")) {
+    cli::cli_warn(
+      "{ext} files do not preserve metadata. We highly recommend saving in `parquet` format to preserve all metadata."
+    )
     write_aniframe_csv(data, filename, ...)
   }
 
@@ -54,7 +60,7 @@ write_aniframe <- function(data, filename, ...){
 }
 
 #' @keywords internal
-write_aniframe_csv <- function(data, filename, ...){
+write_aniframe_csv <- function(data, filename, ...) {
   dot_args <- list(...)
 
   # # Validate filename
@@ -66,7 +72,7 @@ write_aniframe_csv <- function(data, filename, ...){
 }
 
 #' @keywords internal
-write_aniframe_parquet <- function(data, filename, ...){
+write_aniframe_parquet <- function(data, filename, ...) {
   dot_args <- list(...)
 
   # Check that arrow is installed

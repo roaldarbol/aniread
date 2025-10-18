@@ -46,16 +46,16 @@ test_that("CSV and TSV paths call write_aniframe_csv()", {
   # Stub the CSV helper ----------------------------------------------------
   # -----------------------------------------------------------------------
   csv_stub <- function(data, filename, ...) {
-    csv_called <<- TRUE                # flip the spy flag
+    csv_called <<- TRUE # flip the spy flag
     # Write a minimal CSV so the file actually appears on disk
     vroom::vroom_write(data, filename, ...)
   }
 
   # Attach the stub to the *internal* helper inside the package namespace
   mockery::stub(
-    where = write_aniframe,               # function we are testing
-    what  = "write_aniframe_csv",         # name of the internal helper
-    how   = csv_stub
+    where = write_aniframe, # function we are testing
+    what = "write_aniframe_csv", # name of the internal helper
+    how = csv_stub
   )
 
   # -----------------------------------------------------------------------
@@ -63,15 +63,15 @@ test_that("CSV and TSV paths call write_aniframe_csv()", {
   # -----------------------------------------------------------------------
   mockery::stub(
     where = write_aniframe,
-    what  = "write_aniframe_parquet",
-    how   = function(...) {
+    what = "write_aniframe_parquet",
+    how = function(...) {
       stop("Parquet helper should not be invoked for CSV/TSV")
     }
   )
 
   ## ----------- CSV case -----------------------------------------------
   csv_file <- create_tmp_file("csv")
-  expect_silent(write_aniframe(anif, csv_file))
+  expect_warning(write_aniframe(anif, csv_file))
   expect_true(csv_called, info = "CSV helper should have been called")
   expect_true(file.exists(csv_file))
 
@@ -80,7 +80,7 @@ test_that("CSV and TSV paths call write_aniframe_csv()", {
 
   ## ----------- TSV case -----------------------------------------------
   tsv_file <- create_tmp_file("tsv")
-  expect_silent(write_aniframe(anif, tsv_file, delim = "\t"))
+  expect_warning(write_aniframe(anif, tsv_file, delim = "\t"))
   expect_true(csv_called, info = "CSV helper also handles TSV")
   expect_true(file.exists(tsv_file))
 })
@@ -104,8 +104,8 @@ test_that("Parquet path calls write_aniframe_parquet()", {
 
   mockery::stub(
     where = write_aniframe,
-    what  = "write_aniframe_parquet",
-    how   = parquet_stub
+    what = "write_aniframe_parquet",
+    how = parquet_stub
   )
 
   # -----------------------------------------------------------------------
@@ -113,8 +113,8 @@ test_that("Parquet path calls write_aniframe_parquet()", {
   # -----------------------------------------------------------------------
   mockery::stub(
     where = write_aniframe,
-    what  = "write_aniframe_csv",
-    how   = function(...) {
+    what = "write_aniframe_csv",
+    how = function(...) {
       stop("CSV helper should not be invoked for Parquet")
     }
   )
@@ -131,13 +131,13 @@ test_that("Parquet path calls write_aniframe_parquet()", {
 # ---------------------------------------------------------------------------
 test_that("write_aniframe() returns the original aniframe invisibly", {
   anif <- aniframe::example_aniframe()
-  out  <- write_aniframe(anif, create_tmp_file("csv"))
+  out <- write_aniframe(anif, create_tmp_file("csv")) |> suppressWarnings()
 
   # The returned object should be identical (by reference) to the input
   expect_identical(out, anif)
 
   # And it should be invisible – `invisible()` makes the printed output empty,
   # which we can test with `capture.output()`.
-  captured <- capture.output(print(out))
-  expect_silent(write_aniframe(anif, create_tmp_file("csv")))
+  expect_warning(write_aniframe(anif, create_tmp_file("csv")))
+  expect_silent(write_aniframe(anif, create_tmp_file("parquet")))
 })

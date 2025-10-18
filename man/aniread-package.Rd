@@ -4,9 +4,9 @@
 \name{aniread-package}
 \alias{aniread}
 \alias{aniread-package}
-\title{aniread: An R toolbox for reading and writing movement data}
+\title{aniread: An R package for reading and writing movement data}
 \description{
-An R toolbox for reading and writing movement data.
+An R package for reading and writing movement data.
 }
 \seealso{
 Useful links:
