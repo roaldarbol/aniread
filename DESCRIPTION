@@ -1,7 +1,7 @@
 Package: aniread
 Type: Package
 Title: An R package for reading and writing movement data
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(
       "Mikkel", 
@@ -26,7 +26,9 @@ Imports:
     tidyselect,
     vroom
 Suggests: 
+    arrow,
     knitr,
+    mockery,
     rhdf5,
     testthat (>= 3.0.0)
 Additional_repositories: https://roaldarbol.r-universe.dev
