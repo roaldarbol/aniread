@@ -36,12 +36,19 @@ validate_files <- function(
   }
 }
 
+#' @inheritParams validate_files
+#' @keywords internal
+is_dir <- function(path) {
+  dir.exists(path)
+}
+
+
 #' Ensure that the path does not point to a directory.
 #' @description Ensure that the path does not point to a directory.
 #' @inheritParams validate_files
 #' @keywords internal
 ensure_is_not_dir <- function(path) {
-  if (dir.exists(path)) {
+  if (is_dir(path)) {
     cli::cli_abort("Expected a file path but got a directory: {path}")
   }
 }
