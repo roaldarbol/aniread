@@ -11,4 +11,4 @@ bibentry(bibtype = "Misc",
          year = "2025",
          url = "http://www.roald-arboel.com/aniread/",
          abstract = "An R package for reading and writing movement data.",
-         version = "0.1.0")
+         version = "0.2.0")
