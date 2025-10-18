@@ -34,3 +34,8 @@ reference:
   - read_sleap
   - read_trackball
   - read_trex
+
+- title: "Writer functions"
+  desc: These functions are the allow you to save your data.
+  contents:
+  - write_aniframe
